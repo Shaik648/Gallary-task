@@ -56,7 +56,9 @@ const App = () => {
 
         {appState.photos.length > 0 && !appState.loading && (
           <React.Fragment>
-            {appState.engine === "flicker" && <Photo />}
+            {appState.engine === "flicker" && (
+              <Photo photos={appState.photos} />
+            )}
           </React.Fragment>
         )}
       </div>

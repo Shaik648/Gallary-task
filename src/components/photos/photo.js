@@ -34,7 +34,7 @@ export default class Photo extends React.Component {
     return (
       <div>
         {console.log("dataInside", this.state.imageGallary)}
-        {this.state.imageGallary.length > 0
+        {this.state.imageGallary
           ? this.state.imageGallary.map((items) => (
               <div>
                 <img key={items.id} src={items.url} />
