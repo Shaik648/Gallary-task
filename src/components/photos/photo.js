@@ -23,12 +23,12 @@ export default class Photo extends React.Component {
         imageDownLoad: this.state.imageDownLoad.splice(x, 1)
       });
     } else {
-      this.setState({
-        imageDownLoad: [...this.state.imageDownLoad, ...pic]
-      });
+      this.setState((prevState) => ({
+        imageDownLoad: [...prevState.imageDownLoad, pic]
+      }));
     }
 
-    console.log("dataMatter", this.state.imageDownLoad);
+    console.log("dataMatter", this.state.imageDownLoad, prevState);
   };
 
   render() {
