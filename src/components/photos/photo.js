@@ -6,37 +6,45 @@ export default class Photo extends React.Component {
     super(props);
     this.placeholderUrl = "//via.placeholder.com/350x350?text=loading";
     this.state = {
-      imageDownLoad: [],
-      visibility: false
+      // imageDownLoad: [],
+      imageGallary: this.props.photos,
+      visibility: false,
+      indexValue: 0
     };
-    this.imageChange = this.imageChange.bind(this);
-  }
-
-  componentDidMount(pic) {
-    this.imageChange(pic);
+    // this.imageChange = this.imageChange.bind(this);
+    console.log("dataMatter", this.props);
   }
 
   imageChange = (pic) => {
-    if (this.state.imageDownLoad.includes(pic)) {
-      let x = this.state.imageDownLoad.indexOf(pic);
-      this.setState({
-        imageDownLoad: this.state.imageDownLoad.splice(x, 1)
-      });
+    var imageDownLoad = [];
+    if (imageDownLoad.includes(pic)) {
+      let x = imageDownLoad.indexOf(pic);
+      alert(x);
+      // imageDownLoad.splice(x, 1);
     } else {
-      this.setState((prevState) => ({
-        imageDownLoad: [...prevState.imageDownLoad, pic]
-      }));
+      imageDownLoad.push(pic);
     }
 
-    console.log("dataMatter", this.state.imageDownLoad, prevState);
+    console.log("dataMatter---", imageDownLoad);
   };
 
   render() {
     const { photo, onImageClick } = this.props;
+
     return (
       <div>
-        <img src={photo.url} />
-        <input type="checkbox" onChange={() => this.imageChange(photo.url)} />
+        {console.log("dataInside", this.state.imageGallary)}
+        {this.state.imageGallary.length > 0
+          ? this.state.imageGallary.map((items) => (
+              <div>
+                <img key={items.id} src={items.url} />
+                <input
+                  type="checkbox"
+                  onChange={() => this.imageChange(items.url)}
+                />
+              </div>
+            ))
+          : ""}
       </div>
     );
   }

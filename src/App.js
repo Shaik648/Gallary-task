@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { searchForAssest } from "./services/search-service";
 import Search from "./components/search/search";
-import Photos from "./components/photos/photos";
+import Photo from "./components/photos/photo";
 
 const App = () => {
   const [appState, setAppState] = useState({
@@ -56,9 +56,7 @@ const App = () => {
 
         {appState.photos.length > 0 && !appState.loading && (
           <React.Fragment>
-            {appState.engine === "flicker" && (
-              <Photos photos={appState.photos} onImageClick={onImageClick} />
-            )}
+            {appState.engine === "flicker" && <Photo />}
           </React.Fragment>
         )}
       </div>
