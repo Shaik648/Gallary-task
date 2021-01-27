@@ -33,10 +33,7 @@ const App = () => {
         setAppState({ ...appState, loading: false, photos: [] });
       });
   };
-  const onImageClick = (e) => {
-    //todo
-    console.log("onImageClick: ", e.target.id);
-  };
+
   return (
     <div className="App">
       <Search

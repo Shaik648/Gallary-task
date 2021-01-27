@@ -1,6 +1,6 @@
 import React from "react";
 import Observer from "react-intersection-observer";
-const imageDownLoad = [];
+// const imageDownLoad = [];
 export default class Photo extends React.Component {
   constructor(props) {
     super(props);
@@ -10,9 +10,9 @@ export default class Photo extends React.Component {
       imageGallary: this.props.photos,
       visibility: false,
       indexValue: 0,
-      arrayLength: imageDownLoad.length,
+      // arrayLength: imageDownLoad.length,
       // isChecked: false,
-      keyGen: []
+      imageDownLoad: []
     };
     this.imageChange = this.imageChange.bind(this);
     this.fileDownloadHandler = this.fileDownloadHandler.bind(this);
@@ -20,43 +20,46 @@ export default class Photo extends React.Component {
     console.log("dataMatter", this.props);
   }
 
-  //   updateStateList(e, value){
-  //     console.log(e.target.checked)
-  //     if (e.target.checked){
-  //       //append to array
-  //       this.setState({
-  //         keyGen: this.state.keyGen.concat([value])
-  //       })
-  //     } else {
-  //       //remove from array
-  //       this.setState({
-  //         keyGen : this.state.keyGen.filter(function(val) {return val!==value})
-  //       })
-  //    }
-  // }
+  imageChange(e, value) {
+    console.log(e.target.checked);
+    if (e.target.checked) {
+      //append to array
+      this.setState({
+        imageDownLoad: this.state.imageDownLoad.concat([value])
+      });
+    } else {
+      //remove from array
+      this.setState({
+        imageDownLoad: this.state.imageDownLoad.filter(function (val) {
+          return val !== value;
+        })
+      });
+    }
+    console.log("keyGen", this.state.imageDownLoad);
+  }
 
   // Checkbox add and remove
 
-  imageChange = (e, pic) => {
-    console.log("pic", pic);
-    if (imageDownLoad.includes(pic)) {
-      // this.setState({
-      //   isChecked: !this.state.isChecked
-      // });
-      let x = imageDownLoad.indexOf(pic);
+  // imageChang = (e, pic) => {
+  //   console.log("pic", pic);
+  //   if (imageDownLoad.includes(pic)) {
+  //     // this.setState({
+  //     //   isChecked: !this.state.isChecked
+  //     // });
+  //     let x = imageDownLoad.indexOf(pic);
 
-      imageDownLoad.splice(x, 1);
-    } else if (e.target.checked) {
-      imageDownLoad.push(pic);
-    }
+  //     imageDownLoad.splice(x, 1);
+  //   } else if (e.target.checked) {
+  //     imageDownLoad.push(pic);
+  //   }
 
-    console.log("dataMatter---", imageDownLoad);
-  };
+  //   console.log("dataMatter---", imageDownLoad);
+  // };
   // Cancel Button Function
   cancel = () => {
-    let x = imageDownLoad.lastIndexOf(1);
-    imageDownLoad.splice(x, 1);
-    console.log("dataMatter---", imageDownLoad);
+    let x = this.state.imageDownLoad.lastIndexOf(1);
+    this.state.imageDownLoad.splice(x, 1);
+    console.log("dataMatter---", this.state.imageDownLoad);
   };
 
   // File Downlaod Function
@@ -98,7 +101,9 @@ export default class Photo extends React.Component {
           </p>
         )}
         <div>
-          <button onClick={() => this.fileDownloadHandler(imageDownLoad)}>
+          <button
+            onClick={() => this.fileDownloadHandler(this.state.imageDownLoad)}
+          >
             DownLoad
           </button>
           <button onClick={() => this.cancel()}>Cancel</button>
