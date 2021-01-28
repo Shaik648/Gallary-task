@@ -22,6 +22,7 @@ export default function Search({
           }
         }}
       />
+
       <input onClick={search} type="submit" value="Search" />
     </div>
   );
