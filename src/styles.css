@@ -2,3 +2,25 @@
   font-family: sans-serif;
   text-align: center;
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+
+  padding: 10px;
+}
+.grid-item {
+  font-size: 30px;
+  text-align: center;
+}
+.donwloadButton {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.donwloadButton > button {
+  background-color: green;
+  border: 1px solid green;
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+}
