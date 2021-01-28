@@ -10,8 +10,6 @@ export default class Photo extends React.Component {
       imageGallary: this.props.photos,
       visibility: false,
       indexValue: 0,
-      // arrayLength: imageDownLoad.length,
-      // isChecked: false,
       imageDownLoad: []
     };
     this.imageChange = this.imageChange.bind(this);

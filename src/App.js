@@ -22,7 +22,7 @@ const App = () => {
     const value = e.target.value;
     setAppState({ ...appState, engine: value });
   };
-
+  // Search Function
   const search = () => {
     setAppState({ ...appState, loading: true, photos: [] });
     searchForAssest(appState.searchValue, appState.engine)
@@ -36,6 +36,7 @@ const App = () => {
 
   return (
     <div className="App">
+      {/* Search Tab */}
       <Search
         search={search}
         engine={appState.engine}
